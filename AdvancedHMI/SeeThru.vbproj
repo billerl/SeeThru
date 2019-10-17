@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>MfgControl.AdvancedHMI.My.MyApplication</StartupObject>
     <RootNamespace>MfgControl.AdvancedHMI</RootNamespace>
-    <AssemblyName>AdvancedHMI</AssemblyName>
+    <AssemblyName>SeeThru</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -47,7 +47,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>AdvancedHMI.xml</DocumentationFile>
+    <DocumentationFile>SeeThru.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRules>
     </CodeAnalysisRules>
@@ -61,7 +61,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>AdvancedHMI.xml</DocumentationFile>
+    <DocumentationFile>SeeThru.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRules>
     </CodeAnalysisRules>
@@ -80,6 +80,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>eyes_elD_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MfgControl.AdvancedHMI.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -207,6 +210,7 @@
     <None Include="SeeThru_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="eyes_elD_icon.ico" />
     <Content Include="icons\AHMI00.ico" />
     <Content Include="icons\AHMI01.ico" />
     <Content Include="icons\AHMI03.ico" />
