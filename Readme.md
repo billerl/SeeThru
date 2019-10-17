@@ -19,15 +19,20 @@ Right click "AdvancedHMI.exe" and create a shortcut or pin to taskbar
 Open shortcut created above
 To setup the PLC communication
 select Edit -> Preferences -> Use PLC
+
  <img src="http://lukebiller.com/Images/UsePLC.png">
+
  The SetIP form will show. 
  Enter the appropriate information.
  Currently only Allen Bradley Slc / Micrologix or Compact / ControlLogix is supported via Ethernet
+
  <img src="http://lukebiller.com/Images/SetIP.png">
+
  On the Main page click start. 
  Once the Plc Address assinged as the trigger examines True the image will be captured
 
  On first run you'll be prompted to create a folder named "SeeThru" in you MyPictures folder where the captures will be stored.
+ 
  <img src="http://lukebiller.com/Images/CreateFolder.png">
 
 
