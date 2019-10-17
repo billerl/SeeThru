@@ -1,0 +1,3 @@
+﻿0,No Messages
+1,Message bit 1, Yellow,Black
+2,Bit 2 MSG,Red, Green
