@@ -1,10 +1,37 @@
-﻿Imports System.ComponentModel
+﻿'*******************************************************************************
+
+'   *******     *       *      ******     *     *         *****      *        *
+'   *           **     **     *           *     *        *     *     *        *
+'   *           * *   * *     *           *     *        *           *        *  
+'   ****        *  * *  *     *           *     *   **   *            *      *
+'   *           *   *   *     *  ****     *     *        *             *    *
+'   *           *       *     *     *     *     *        *     *        *  *   
+'   *******     *       *      ******      *****          *****           *
+
+'NOTE THIS IS DIFFERENT FOR THIS VERSION ADVANCEDHMI VS PREVIOUS VERSIONS..
+'YOUR PROJECT REFERENCE FOLDER IS LOCATED IN THE SOLUTION EXPLORER TO THE RIGHT -->UNDER VB SeeThru
+'
+'From your project, right click On "References" And Select "Manager Nuget Packages..." Option. It will open up nuget package manager. In package source, make sure that "nuget.org" Is selected.
+'(If you are Using the commercial release, please check the instruction In the commercial download area For instructions To setup the commercial release nuget repository.)
+'Under "Browse", enter the search text "emgu cv" And you should be able to find the Emgu.CV nuget pacakge.
+'Please make sure the package Is created by "Emgu Corporation" For the official release.
+'Click the "Install" button. Nuget will download Emgu CV And configure the project For you.
+
+'**IMPORTS**
+'Imports Emgu.CV
+'Imports Emgu.CV.Structure
+'**DECLARATIONS**
+'Public capturez As VideoCapture = New VideoCapture(0) '0 is index where your built in webcam is located
+
+Imports System.ComponentModel
 Imports System.Drawing
 Imports System.Drawing.Imaging
 Imports System.IO
+Imports Emgu.CV
+Imports Emgu.CV.Structure
 
-Public Class MainForm
-
+Public Class SeeThruForm
+    Public capturez As VideoCapture = New VideoCapture(1)
     '*******************************************************************************
     '* Stop polling when the form is not visible in order to reduce communications
     '* Copy this section of code to every new form created
@@ -59,7 +86,11 @@ Public Class MainForm
         Me.FormBorderStyle = FormBorderStyle.FixedSingle
         Me.ControlBox = False
         Me.Text = ""
-        GrabFrame()
+        If useCam = True Then
+            GrabCamFrame()
+        Else
+            GrabFrame()
+        End If
         TextBox1.Visible = True
         BtnSaveStart.Visible = True
         Me.ControlBox = True
@@ -78,7 +109,11 @@ Public Class MainForm
         TextBox1.Visible = False
         BtnSaveStart.Visible = False
         Me.ControlBox = False
-        GrabFrame()
+        If useCam = True Then
+            GrabCamFrame()
+        Else
+            GrabFrame()
+        End If
         TextBox1.Visible = True
         BtnSaveStart.Visible = True
         Me.ControlBox = True
@@ -123,6 +158,24 @@ Public Class MainForm
         End If
 
     End Sub
+    Private Sub GrabCamFrame()
+        Dim fileName As String = TextBox1.Text & ".jpg"
+        Dim path As String = My.Computer.FileSystem.SpecialDirectories.MyPictures & "\SeeThru\"
+
+        Timer1.Enabled = False
+        Try
+            Dim bitmap As New Bitmap(PictureBox1.Image)
+            PictureBox1.Image.Save(path & fileName)
+        Catch ex As Exception
+            MessageBox.Show(String.Format("Error: {0}", ex.Message) & vbNewLine & "Set to stream from cam. No cam detected." & vbNewLine & "Change settings at Edit->Preferences->Stream Image From Cam")
+        End Try
+
+        Timer1.Enabled = True
+
+
+
+    End Sub
+
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         start = False
@@ -180,6 +233,15 @@ Public Class MainForm
             BtnSaveStart.Text = "Save"
             PilotLight1.Visible = False
         End If
+        If useCam = True Then
+            Timer1.Enabled = True
+            PictureBox1.Visible = True
+            StreamImageFromCamToolStripMenuItem.Checked = True
+        Else
+            Timer1.Enabled = False
+            PictureBox1.Visible = False
+            StreamImageFromCamToolStripMenuItem.Checked = False
+        End If
         ToolTip1.SetToolTip(PilotLight1, plcAddress)
         CheckChanges()
     End Sub
@@ -187,6 +249,7 @@ Public Class MainForm
     Private Sub SaveToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem1.Click
 
         SaveStuff()
+        LoadParamTxt()
 
     End Sub
 
@@ -284,4 +347,23 @@ Public Class MainForm
 
     End Sub
 
+    Private Sub StreamImageFromCamToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StreamImageFromCamToolStripMenuItem.Click
+        If StreamImageFromCamToolStripMenuItem.Checked = True Then
+            StreamImageFromCamToolStripMenuItem.Checked = False
+            useCam = False
+        Else
+            StreamImageFromCamToolStripMenuItem.Checked = True
+            useCam = True
+        End If
+        UpdatePref()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Try
+            Dim imagez As Image(Of Bgr, Byte) = capturez.QueryFrame().ToImage(Of Bgr, Byte)
+            PictureBox1.Image = imagez.ToBitmap()
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

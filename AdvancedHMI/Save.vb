@@ -35,10 +35,11 @@ Module Save
         Save((NameOf(driver)), driver)
         Save((NameOf(plcAddress)), plcAddress)
         Save((NameOf(debounceTmr)), debounceTmr)
+        Save((NameOf(useCam)), useCam)
         savingLastPass = True
         Save((NameOf(usePLC)), usePLC)
         savingFirstPass = False
-        MainForm.SaveToolStripMenuItem1.Enabled = False
+        SeeThruForm.SaveToolStripMenuItem1.Enabled = False
 
     End Sub
 

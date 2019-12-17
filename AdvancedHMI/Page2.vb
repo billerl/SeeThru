@@ -15,7 +15,7 @@
     End Sub
 
     Private Sub ReturnToMainButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        MainForm.Show()
+        SeeThruForm.Show()
         ' Me.Hide()
         Me.Visible = False
     End Sub

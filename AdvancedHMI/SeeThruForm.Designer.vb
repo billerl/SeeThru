@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class MainForm
+Partial Class SeeThruForm
     Inherits System.Windows.Forms.Form
     'Inherits CommonDialog
 
@@ -24,7 +24,7 @@ Partial Class MainForm
     ' <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SeeThruForm))
         Me.BtnSaveStart = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
@@ -36,6 +36,7 @@ Partial Class MainForm
         Me.DisplayNameOnBorderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsePLCToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CommunicationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StreamImageFromCamToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EthernetIPforCLXCom1 = New AdvancedHMIDrivers.EthernetIPforCLXCom(Me.components)
@@ -43,10 +44,13 @@ Partial Class MainForm
         Me.DataSubscriber1 = New AdvancedHMIControls.DataSubscriber(Me.components)
         Me.PilotLight1 = New AdvancedHMIControls.PilotLight()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.MenuStrip1.SuspendLayout()
         CType(Me.EthernetIPforCLXCom1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EthernetIPforSLCMicroCom1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataSubscriber1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnSaveStart
@@ -88,14 +92,14 @@ Partial Class MainForm
         '
         Me.SaveToolStripMenuItem1.Enabled = False
         Me.SaveToolStripMenuItem1.Name = "SaveToolStripMenuItem1"
-        Me.SaveToolStripMenuItem1.Size = New System.Drawing.Size(117, 26)
+        Me.SaveToolStripMenuItem1.Size = New System.Drawing.Size(216, 26)
         Me.SaveToolStripMenuItem1.Text = "Save"
         '
         'LoadToolStripMenuItem
         '
         Me.LoadToolStripMenuItem.Enabled = False
         Me.LoadToolStripMenuItem.Name = "LoadToolStripMenuItem"
-        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(117, 26)
+        Me.LoadToolStripMenuItem.Size = New System.Drawing.Size(216, 26)
         Me.LoadToolStripMenuItem.Text = "Load"
         '
         'EditToolStripMenuItem
@@ -108,7 +112,7 @@ Partial Class MainForm
         'PreferencesToolStripMenuItem
         '
         Me.PreferencesToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.PreferencesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DisplayNameOnBorderToolStripMenuItem, Me.UsePLCToolStripMenuItem, Me.CommunicationToolStripMenuItem})
+        Me.PreferencesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DisplayNameOnBorderToolStripMenuItem, Me.UsePLCToolStripMenuItem, Me.CommunicationToolStripMenuItem, Me.StreamImageFromCamToolStripMenuItem})
         Me.PreferencesToolStripMenuItem.Name = "PreferencesToolStripMenuItem"
         Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(216, 26)
         Me.PreferencesToolStripMenuItem.Text = "Preferences"
@@ -119,7 +123,7 @@ Partial Class MainForm
         Me.DisplayNameOnBorderToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.DisplayNameOnBorderToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DisplayNameOnBorderToolStripMenuItem.Name = "DisplayNameOnBorderToolStripMenuItem"
-        Me.DisplayNameOnBorderToolStripMenuItem.Size = New System.Drawing.Size(247, 26)
+        Me.DisplayNameOnBorderToolStripMenuItem.Size = New System.Drawing.Size(249, 26)
         Me.DisplayNameOnBorderToolStripMenuItem.Text = "Display Name on Border"
         '
         'UsePLCToolStripMenuItem
@@ -127,14 +131,20 @@ Partial Class MainForm
         Me.UsePLCToolStripMenuItem.Checked = True
         Me.UsePLCToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
         Me.UsePLCToolStripMenuItem.Name = "UsePLCToolStripMenuItem"
-        Me.UsePLCToolStripMenuItem.Size = New System.Drawing.Size(247, 26)
+        Me.UsePLCToolStripMenuItem.Size = New System.Drawing.Size(249, 26)
         Me.UsePLCToolStripMenuItem.Text = "Use PLC"
         '
         'CommunicationToolStripMenuItem
         '
         Me.CommunicationToolStripMenuItem.Name = "CommunicationToolStripMenuItem"
-        Me.CommunicationToolStripMenuItem.Size = New System.Drawing.Size(247, 26)
+        Me.CommunicationToolStripMenuItem.Size = New System.Drawing.Size(249, 26)
         Me.CommunicationToolStripMenuItem.Text = "Communication"
+        '
+        'StreamImageFromCamToolStripMenuItem
+        '
+        Me.StreamImageFromCamToolStripMenuItem.Name = "StreamImageFromCamToolStripMenuItem"
+        Me.StreamImageFromCamToolStripMenuItem.Size = New System.Drawing.Size(249, 26)
+        Me.StreamImageFromCamToolStripMenuItem.Text = "Stream Image From Cam"
         '
         'HelpToolStripMenuItem
         '
@@ -205,11 +215,24 @@ Partial Class MainForm
         Me.PilotLight1.Value = False
         Me.PilotLight1.ValueToWrite = 0
         '
-        'MainForm
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(227, 183)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(100, 50)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.PictureBox1.TabIndex = 4
+        Me.PictureBox1.TabStop = False
+        '
+        'Timer1
+        '
+        '
+        'SeeThruForm
         '
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.Lime
         Me.ClientSize = New System.Drawing.Size(1362, 815)
+        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.PilotLight1)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.BtnSaveStart)
@@ -220,7 +243,7 @@ Partial Class MainForm
         Me.KeyPreview = True
         Me.Location = New System.Drawing.Point(441, 86)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Name = "MainForm"
+        Me.Name = "SeeThruForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "SeeThru"
         Me.TransparencyKey = System.Drawing.Color.Lime
@@ -229,6 +252,7 @@ Partial Class MainForm
         CType(Me.EthernetIPforCLXCom1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EthernetIPforSLCMicroCom1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataSubscriber1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -252,4 +276,7 @@ Partial Class MainForm
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents StreamImageFromCamToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Timer1 As Timer
 End Class

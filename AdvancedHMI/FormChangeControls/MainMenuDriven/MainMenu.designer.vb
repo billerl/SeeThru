@@ -50,7 +50,7 @@ Partial Class MainMenu
         Me.MainMenuButton1.ComComponent = Nothing
         Me.MainMenuButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MainMenuButton1.ForeColor = System.Drawing.Color.Black
-        Me.MainMenuButton1.FormToOpen = GetType(MfgControl.AdvancedHMI.MainForm)
+        Me.MainMenuButton1.FormToOpen = GetType(MfgControl.AdvancedHMI.SeeThruForm)
         Me.MainMenuButton1.KeypadWidth = 300
         Me.MainMenuButton1.Location = New System.Drawing.Point(2, 12)
         Me.MainMenuButton1.Name = "MainMenuButton1"

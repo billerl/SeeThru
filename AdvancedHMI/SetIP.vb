@@ -12,7 +12,7 @@
             driver = DrpDwnDriver.SelectedItem
             plcAddress = TbPlcAddress.Text
             CheckChanges()
-            MainForm.UpdatePref()
+            SeeThruForm.UpdatePref()
             Me.Close()
         End If
 
@@ -48,13 +48,13 @@
             CBTags.Visible = False
             BtnReadTags.Visible = False
         End If
-        MainForm.UpdatePref()
+        SeeThruForm.UpdatePref()
     End Sub
 
     Private Sub BtnReadTags_Click(sender As Object, e As EventArgs) Handles BtnReadTags.Click
 
         Try
-            Dim tags() As MfgControl.AdvancedHMI.Drivers.CLXTag = MainForm.EthernetIPforCLXCom1.GetTagList
+            Dim tags() As MfgControl.AdvancedHMI.Drivers.CLXTag = SeeThruForm.EthernetIPforCLXCom1.GetTagList
             Dim TagIndex As Integer = 0
             For Each TagID In tags
                 CBTags.Items.Add(tags(TagIndex).TagName)

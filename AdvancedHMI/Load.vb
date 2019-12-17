@@ -34,7 +34,7 @@
             End While
         End Using
         'update the form after all parameters are loaded
-        MainForm.UpdatePref()
+        SeeThruForm.UpdatePref()
 
     End Sub
     Public Sub LoadParam(x As String, y As String)
@@ -63,7 +63,11 @@
             debounceTmr = y
             savedDebounceTmr = y
         End If
-        MainForm.LoadToolStripMenuItem.Enabled = False
+        If x = "useCam" Then
+            useCam = y
+            savedUseCam = y
+        End If
+        SeeThruForm.LoadToolStripMenuItem.Enabled = False
     End Sub
 
 End Module

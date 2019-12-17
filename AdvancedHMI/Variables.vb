@@ -16,16 +16,18 @@
     Public askToSave As Boolean
     Public debounceTmr As Double
     Public savedDebounceTmr As Double
+    Public savedUseCam As Boolean
+    Public useCam As Boolean
 
     Public Sub CheckChanges()
 
-        If savedDebounceTmr <> debounceTmr Or savedIpAddress <> ipAddress Or savedPlcAddress <> plcAddress Or savedDriver <> driver Or savedUsePLC <> usePLC Or savedShowName <> showName Then
-            MainForm.SaveToolStripMenuItem1.Enabled = True
-            MainForm.LoadToolStripMenuItem.Enabled = True
+        If savedUseCam <> useCam Or savedDebounceTmr <> debounceTmr Or savedIpAddress <> ipAddress Or savedPlcAddress <> plcAddress Or savedDriver <> driver Or savedUsePLC <> usePLC Or savedShowName <> showName Then
+            SeeThruForm.SaveToolStripMenuItem1.Enabled = True
+            SeeThruForm.LoadToolStripMenuItem.Enabled = True
             askToSave = True
         Else
-            MainForm.SaveToolStripMenuItem1.Enabled = False
-            MainForm.LoadToolStripMenuItem.Enabled = False
+            SeeThruForm.SaveToolStripMenuItem1.Enabled = False
+            SeeThruForm.LoadToolStripMenuItem.Enabled = False
             askToSave = False
         End If
 
